@@ -1,0 +1,48 @@
+#include <iostream>
+#include <limits> // for INT_MIN and INT_MAX
+
+int main() {
+    int totalNumbers;
+
+    // Ask how many numbers to process
+    std::cout << "How many numbers will you enter? ";
+    std::cin >> totalNumbers;
+
+    // Safety check
+    if (totalNumbers <= 0) {
+        std::cout << "Please enter a positive number.\n";
+        return 1;
+    }
+
+    int sum = 0;
+    int maxNumber = std::numeric_limits<int>::min(); // initialize to smallest possible int
+    int minNumber = std::numeric_limits<int>::max(); // initialize to largest possible int
+
+    std::cout << "Enter " << totalNumbers << " integers:\n";
+
+    for (int i = 0; i < totalNumbers; ++i) {
+        int number;
+        std::cin >> number;
+
+        sum += number;
+
+        if (number > maxNumber) {
+            maxNumber = number;
+        }
+
+        if (number < minNumber) {
+            minNumber = number;
+        }
+    }
+
+    // Calculate average
+    double average = static_cast<double>(sum) / totalNumbers;
+
+    // Output the results
+    std::cout << "Sum: " << sum << "\n";
+    std::cout << "Average: " << average << "\n";
+    std::cout << "Maximum: " << maxNumber << "\n";
+    std::cout << "Minimum: " << minNumber << "\n";
+
+    return 0;
+}
